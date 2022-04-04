@@ -2,13 +2,7 @@
 
 class Dechet
 {
-
-    //volume
-    //co2 incineration
-
     public int $volume;
-    // public string $type;
-
     /**
      * Get the value of volume
      */ 
