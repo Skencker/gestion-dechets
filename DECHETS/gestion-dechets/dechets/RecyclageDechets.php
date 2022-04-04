@@ -2,7 +2,7 @@
 
 require_once "Dechet.php";
 
-class Recyclage extends Dechet
+class RecyclageDechets extends Dechet
 {
 
 // co2 recyclage

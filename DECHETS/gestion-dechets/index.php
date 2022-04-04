@@ -1,6 +1,7 @@
 <?php
 
 require_once '../gestion-dechets/dechets/Dechet.php';
+require_once '../gestion-dechets/services/Recyclage.php';
 
 $verre = new Dechet();
 $verre->getVolume("verre");
@@ -31,7 +32,7 @@ $orga->getVolume("organique");
 // $orga = new DechetOrganique();
 // $orga->getVolume();
 
-
+// répartition du vol de chaque déchet :
 echo "Volume total des déchets de type verre : ";
 echo ($verre->volume);
 echo " tonnes";
@@ -48,3 +49,12 @@ echo "Volume total des déchets de type organique : ";
 echo ($orga->volume);
 echo " tonnes";
 echo "<br>";
+
+
+//capacity du recyclage du papier
+
+
+$capa = new Recyclage();
+$capa->getCapacity();
+
+// var_dump(($capa->capacity));
