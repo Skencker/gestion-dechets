@@ -4,7 +4,9 @@ require_once '../gestion-dechets/dechets/Dechet.php';
 require_once '../gestion-dechets/services/Recyclage.php';
 
 $verre = new Dechet();
-$verre->getVolume("verre");
+$volVerre = $verre->getVolume("verre");
+// $co2IncinerationVerre = $verre->getCo2Incineration();
+
 
 $papier = new Dechet();
 $papier->getVolume("papier");
@@ -35,6 +37,7 @@ $orga->getVolume("organique");
 // répartition du vol de chaque déchet :
 echo "Volume total des déchets de type verre : ";
 echo ($verre->volume);
+// echo ($verre->co2Incineration);
 echo " tonnes";
 echo "<br>";
 echo "Volume total des déchets de type papier : ";
@@ -50,11 +53,20 @@ echo ($orga->volume);
 echo " tonnes";
 echo "<br>";
 
-
+// recuperation des données
+$json = 'data/data.json';
+$data = json_decode(file_get_contents($json), true);
+$services = $data["services"];
 //capacity du recyclage du papier
 
 
 $capa = new Recyclage();
 $capa->getCapacity();
 
-// var_dump(($capa->capacity));
+// var_dump(($capa));
+
+//creation nouveau composteur 
+$composteur1 = new Composteur(3, 61);
+$composteur2 = new Composteur(3, 73);
+$composteur3 = new Composteur(1, 76);
+

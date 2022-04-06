@@ -1,8 +1,8 @@
 <?php
 
-class Service {
+abstract class Service {
 
-    protected $type;
+    // protected $type;
 
 } 
 

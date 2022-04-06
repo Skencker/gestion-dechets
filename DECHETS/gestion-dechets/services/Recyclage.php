@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Service.php';
+// require_once '../data/Data.php';
 
 class Recyclage extends Service {
     
@@ -11,18 +12,23 @@ class Recyclage extends Service {
      */ 
     public function getCapacity(): array
     {
-        $json = '../data/data.json';
-        $data = json_decode(file_get_contents($json), true);
-        $this->capacity = $data["prestations"];
-        // var_dump($this->capacity);
-        //si type = recyclage papier alors tu me donne la clé capacity
-        $cap = array_column($this->capacity, "recyclagePapier");
-        var_dump($cap);
-        foreach ($this->capacity as $cap) {
 
-            // echo '<br>';
-            // if( $cap["capacité"] && $cap["type"]= "recyclagePapier"){
-            //     var_dump($cap["capacité"]);
+        // $data = new JsonFormatter();
+        // $data->getData();
+        $json = 'data/data.json';
+        $data = json_decode(file_get_contents($json), true);
+        $services = $data["services"];
+        // var_dump($services);
+        //si type = recyclage papier alors tu me donne la clé capacity
+        foreach ($services as $key=>$service) {
+
+            echo '<br>';
+            var_dump($service["capacite"]);
+            foreach ($service as $serv){
+                // var_dump($serv->capacite);
+            }
+            // if( $key= "recyclagePapier"){
+            //     var_dump($service[);
                
             // }
         }

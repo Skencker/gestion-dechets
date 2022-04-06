@@ -1,7 +1,10 @@
 <?php
 
 require_once 'Recyclage.php';
-class RecyclageMetaux extends Recyclage {
+require_once 'MetauxInterface.php';
+
+class RecyclageMetaux extends Recyclage implements MetauxInterface
+{
 
 
 }

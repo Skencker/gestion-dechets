@@ -1,8 +1,10 @@
 <?php
 
 require_once 'Recyclage.php';
+require_once 'PapierInterface.php';
 
-class RecyclagePapier extends Recyclage {
+class RecyclagePapier extends Recyclage implements PapierInterface
+{
 // calculer la quantité de papier jeter
 
 // capacité du service

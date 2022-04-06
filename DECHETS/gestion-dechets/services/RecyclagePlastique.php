@@ -1,7 +1,9 @@
 <?php
 
 require_once 'Recyclage.php';
-class RecyclagePlastique extends Recyclage {
+require_once 'PlastiqueInterface';
 
-//differents plastiques
+class RecyclagePlastique extends Recyclage implements PlastiqueInterface
+{
+
 }
