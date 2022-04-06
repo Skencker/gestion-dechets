@@ -2,7 +2,6 @@
 
 abstract class Service {
 
-    // protected $type;
 
 } 
 

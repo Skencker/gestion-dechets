@@ -5,12 +5,13 @@ require_once 'PapierInterface.php';
 
 class RecyclagePapier extends Recyclage implements PapierInterface
 {
-// calculer la quantité de papier jeter
-
-// capacité du service
-
-//faire differnce des 2
-
-// me donne la quantité en trop qui doit etre incinérer
+    public function getCapacity(): int
+    {
+        $json = 'data/data.json';
+        $data = json_decode(file_get_contents($json), true);
+        $id = 6;
+        $this->capacity = $data["services"][$id]["capacite"];
+        return $this->capacity;
+    }
 
 }

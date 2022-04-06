@@ -1,0 +1,58 @@
+@startuml Mediatheque
+hide circle
+
+class Service {
+  - id : Int
+  - name : String
+  - type : String
+  - ligneFour : Int
+  - capaciteLigne : Int
+  - rejetCo2 : Int
+}
+
+class Categories {
+  - id : Int 
+  - name : String
+}
+
+class Genres {
+  - id  : Int 
+  - name : String
+}
+
+class Users {
+  - idUser : Int
+  + firstname : String
+  + lastname : String
+  - birthday : Date
+  # password : String
+  - email : String
+  - address : Int
+  - zipcode : Int
+  - city : String
+  - role : String
+  - valid : Boolean
+}
+
+class Borrows {
+  - idBorrow : Int
+  - createAt : DateTime
+  - borrowDate : DateTime
+  - userId : Id
+  - statut : Boolean
+}
+class BorrowDetails {
+  - id : Int
+  - book : String
+  - borrowId : Id
+  - quantity : Int
+}
+
+Users "1" -- "0..1" Borrows
+Users "0..1" -- "0..5" Books
+Books "0..*" -- "1" Categories
+Books "0..*" -- "1" Genres
+Borrows "1" -- "1" BorrowDetails
+
+
+@enduml

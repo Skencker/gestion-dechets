@@ -11,7 +11,7 @@ class Dechet
     public function getVolume($type): int
     {
         //recupération des fichier data
-        $jsonDechet = '../data/data.json';
+        $jsonDechet = 'data/data.json';
         $datasDechet = json_decode(file_get_contents($jsonDechet), true);
         $dechets = $datasDechet["quartiers"];
         
