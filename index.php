@@ -28,15 +28,17 @@ echo " tonnes";
 echo "<br>";
 echo "Consigne du service 1: ";
 print_r($serviceRecyclageVerre1->consigne);
-echo "<br>";
-echo "<br>";
 //je compare le volume de verre par rapport à la capacité du service correspondant
+echo "<br>";
 $difVol = $verre->volume - $serviceRecyclageVerre1->capacity;
 if ($difVol > 0 ) {
     //je recherche un nouveau service disponible si non -> incineration
     //envoyer le reste dans l'incinerateur
-    // var_dump($difVol);
+    echo "Volume total des déchets restant  : ";
+    echo $difVol;
 }
+echo "<br>";
+echo "<br>";
 $papier = new Dechet();
 $papier->getVolume("papier");
 echo "Volume total des déchets de type papier  : ";
