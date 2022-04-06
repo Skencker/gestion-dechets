@@ -1,6 +1,8 @@
 <?php
 
-class Dechet
+require_once 'data/Data.php';
+
+class Dechet extends JsonFormatter
 {
     public int $volume;
     public int $co2Incineration;
@@ -11,10 +13,10 @@ class Dechet
     public function getVolume($type): int
     {
         //recupération des fichier data
-        $jsonDechet = 'data/data.json';
-        $datasDechet = json_decode(file_get_contents($jsonDechet), true);
-        $dechets = $datasDechet["quartiers"];
-        
+        $json= new JsonFormatter();
+        $data = $json->getData();
+        $dechets = $data["quartiers"];
+        //je fais la somme des volumes de chaque dechets
         $total[] = [];
         foreach ($dechets as $dechet) {
             array_push($total, (int)$dechet[$type]);  

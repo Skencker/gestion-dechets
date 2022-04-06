@@ -1,10 +1,15 @@
 <?php 
 class JsonFormatter 
 {
-    public function getData()
+    public array $data;
+    
+    public function getData(): array
     {
         $json = 'data/data.json';
-        $data = json_decode(file_get_contents($json), true);
-        return $data;
+        $this->data = json_decode(file_get_contents($json), true);
+        return $this->data;
     }
+
+
+
 }
