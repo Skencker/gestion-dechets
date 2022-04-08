@@ -2,12 +2,19 @@
 
 
 require_once 'Recyclage.php';
-require_once './Interfaces/VerreInterface.php';
-require_once 'data/Data.php';
+require_once 'VerreInterface.php';
+require_once 'Data.php';
 
 class RecyclageVerre extends Recyclage implements VerreInterface
 {
     public string $consigne;
+    public $capacity;
+
+    public function __construct($capacity)
+    {
+
+        $this->capacity = $capacity;
+    }
 
     /**
      * Get the value of consigne
@@ -38,12 +45,15 @@ class RecyclageVerre extends Recyclage implements VerreInterface
         return $this->capacity;
     }
     // le recyclage de verre n'accepte que le verre
-    public function acceptTypeDechet(?Dechet $dechet)
+    public function addDechets(?Dechet $dechet)
     {
         if (!$dechet instanceof VerreInterface) 
         {
             throw new Exception("ERREUR", 1);
         }
-        return parent::acceptTypeDechet($dechet);
+        // if ($this->recyclageVerre["capacite"] > $this->volumeTotalVerre) {
+        //     echo "ok";
+        // }
+        return parent::addDechets($dechet);
     }
 }
