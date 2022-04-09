@@ -28,6 +28,8 @@ foreach ($dechets as $dechet) {
         foreach ($dechetVerre as $dechetV){
             $volumeTotalVerre += $dechetV->volume;
         }
+        // array_push($dechetVerre, (object)["total" => $volumeTotalVerre]);
+              
     }
     if ($dechet["papier"] ) 
     {
@@ -43,6 +45,7 @@ foreach ($dechets as $dechet) {
         $volumeTotalMetaux =  0;
         foreach ($dechetMetaux as $dechetM){
             $volumeTotalMetaux += $dechetM->volume;
+    
         }
     }
     if ($dechet["organique"] ) 
@@ -53,6 +56,14 @@ foreach ($dechets as $dechet) {
             $volumeTotalOrganique += $dechetO->volume;
         }
     }
+
+
+    $tabDechets = [
+        $dechetVerre,
+        $dechetPapier, 
+        $dechetMetaux,
+        $dechetOrganique,
+    ];
 }
 // print_r($dechetVerre);
 // print_r($dechetVerre["volume"]->getVolume());

@@ -10,6 +10,10 @@ use App\Services\RecyclagePapier;
 use App\Services\RecyclageVerre;
 use App\Services\RecyclagePlastique;
 
+require_once 'Dechets/objetDechets.php';
+
+$dechets = $tabDechets;
+
 
 $json= new JsonFormatter();
 $data = $json->getData();
@@ -31,6 +35,7 @@ foreach ($services as $service) {
     if ($service["type"] == "incinerateur" ) 
     {
         $incinerateur[] = new Incinerateur($service["ligneFour"], $service["capaciteLigne"]);
+    
     }
     if ($service["type"] == "composteur" ) 
     {
@@ -52,7 +57,16 @@ foreach ($services as $service) {
 
         $recyclageMetaux[] = new RecyclageMetaux($service["capacite"]);
     }
+
+    $tabServices = [
+        $incinerateur,
+        $composteur,
+        $recyclagePapier,
+        $recyclageMetaux,
+        $recyclageVerre,
+    ];
 }
+
 
 
 

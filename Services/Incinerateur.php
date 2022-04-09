@@ -9,10 +9,11 @@ use App\Types\VerreInterface;
 use App\Services\AbstractService;
 
 
-class Incinerateur extends AbstractService implements OrganiqueInterface, VerreInterface, MetauxInterface, PapierInterface
+class Incinerateur extends AbstractService 
 {
     public $lignFour;
     public $capaciteLign;
+    public $capacity;
 
     public function __construct($lignFour, $capaciteLign)
     {
@@ -20,4 +21,13 @@ class Incinerateur extends AbstractService implements OrganiqueInterface, VerreI
         $this->capaciteLign = $capaciteLign;
     }
 
+
+    /**
+     * Get the value of capacity
+     */ 
+    public function getCapacity()
+    {
+        $this->capacity = $this->lignFour * $this->capaciteLign;
+        return $this->capacity;
+    }
 }
