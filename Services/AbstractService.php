@@ -1,15 +1,17 @@
 <?php
 
-require_once 'objetServices.php';
+namespace App\Services;
 
-abstract class Service {
+use App\Dechets\AbstractDechet;
+
+abstract class AbstractService {
 
     public $typeDechet;
 
     // public $acceptTypeDechet;
 
     //determiner le type de dechets accépter
-    public function addDechets(?Dechet $dechet)
+    public function addDechets()
     {
         //check if there is space
         // if ($this->recyclageVerre["capacite"] > $this->volumeTotalVerre) {
@@ -20,7 +22,7 @@ abstract class Service {
         //if capacity > volume stop
         //if capacity < volume the rest goes to another department
 
-        $this->dechet = $dechet;
+        // $this->dechet = $dechet;
 
         return $this;
     }

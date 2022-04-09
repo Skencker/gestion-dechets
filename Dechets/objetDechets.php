@@ -1,10 +1,13 @@
 <?php
 
-require_once 'Data.php';
-require_once 'DechetVerre.php';
-require_once 'DechetPapier.php';
-require_once 'DechetMetaux.php';
-require_once 'DechetOrganique.php';
+namespace App\Dechets;
+
+use App\Data\JsonFormatter;
+use App\Dechets\DechetVerre;
+use App\Dechets\DechetPapier;
+use App\Dechets\DechetMetaux;
+use App\Dechets\DechetOrganique;
+
 
 
 $json= new JsonFormatter();

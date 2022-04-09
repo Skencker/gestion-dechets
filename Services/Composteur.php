@@ -1,9 +1,11 @@
 <?php
 
-require_once 'Service.php';
-require_once 'OrganiqueInterface.php';
+namespace App\Services;
 
-class Composteur extends Service implements OrganiqueInterface 
+use App\Types\OrganiqueInterface;
+use App\Services\AbstractService;
+
+class Composteur extends AbstractService implements OrganiqueInterface
 {
     public int $capacity;
     public int $foyers;

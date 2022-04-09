@@ -1,9 +1,12 @@
 <?php
 
+namespace App\Services;
 
-require_once 'Recyclage.php';
-require_once 'VerreInterface.php';
-require_once 'Data.php';
+use App\Data\JsonFormatter;
+use App\Dechets\AbstractDechet;
+use App\Types\VerreInterface;
+use App\Services\Recyclage;
+use Exception;
 
 class RecyclageVerre extends Recyclage implements VerreInterface
 {
@@ -44,16 +47,16 @@ class RecyclageVerre extends Recyclage implements VerreInterface
         $this->capacity = $data["services"][$id]["capacite"];
         return $this->capacity;
     }
-    // le recyclage de verre n'accepte que le verre
-    public function addDechets(?Dechet $dechet)
-    {
-        if (!$dechet instanceof VerreInterface) 
-        {
-            throw new Exception("ERREUR", 1);
-        }
+    //le recyclage de verre n'accepte que le verre
+    // public function addDechets()
+    // {
+        // if (!$dechet instanceof VerreInterface) 
+        // {
+        //     throw new Exception("ERREUR", 1);
+        // }
         // if ($this->recyclageVerre["capacite"] > $this->volumeTotalVerre) {
         //     echo "ok";
         // }
-        return parent::addDechets($dechet);
-    }
+        // return parent::addDechets($dechet);
+    // }
 }

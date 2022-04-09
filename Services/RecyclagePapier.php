@@ -1,8 +1,9 @@
 <?php
 
-require_once 'Recyclage.php';
-require_once 'PapierInterface.php';
-require_once 'Data.php';
+namespace App\Services;
+
+use App\Types\PapierInterface;
+use App\Services\Recyclage;
 
 class RecyclagePapier extends Recyclage implements PapierInterface
 {

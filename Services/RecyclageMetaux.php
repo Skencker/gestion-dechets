@@ -1,8 +1,9 @@
 <?php
 
-require_once 'Recyclage.php';
-require_once 'MetauxInterface.php';
-require_once 'Data.php';
+namespace App\Services;
+
+use App\Services\Recyclage;
+use App\Types\MetauxInterface;
 
 class RecyclageMetaux extends Recyclage implements MetauxInterface
 {

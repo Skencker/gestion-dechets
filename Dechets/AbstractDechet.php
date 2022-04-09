@@ -1,8 +1,8 @@
 <?php
+namespace App\Dechets;
 
-require_once 'Data.php';
 
-class Dechet
+class AbstractDechet
 {
     public int $volume;
 

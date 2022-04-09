@@ -1,8 +1,9 @@
 <?php
 
-require_once 'objetDechets.php';
-require_once 'objetServices.php';
-require_once 'DechetVerre.php';
+require_once 'autoload.php';
+
+require_once 'Dechets/objetDechets.php';
+require_once 'Services/objetServices.php';
 
 //je récupére le volume de chque dechets
 

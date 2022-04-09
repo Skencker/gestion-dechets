@@ -1,6 +1,8 @@
 <?php
 
-require_once "RecyclageDechets.php";
+namespace App\Dechets;
+
+use App\Dechets\RecyclageDechets;
 
 class DechetPapier extends RecyclageDechets
 {

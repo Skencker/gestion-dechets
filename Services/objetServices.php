@@ -1,12 +1,15 @@
 <?php
 
-require_once 'Data.php';
-require_once 'Incinerateur.php';
-require_once 'Composteur.php';
-require_once 'RecyclagePapier.php';
-require_once 'RecyclagePlastique.php';
-require_once 'RecyclageMetaux.php';
-require_once 'RecyclageVerre.php';
+namespace App\Services;
+
+use App\Data\JsonFormatter;
+use App\Services\Incinerateur;
+use App\Services\Composteur;
+use App\Services\RecyclageMetaux;
+use App\Services\RecyclagePapier;
+use App\Services\RecyclageVerre;
+use App\Services\RecyclagePlastique;
+
 
 $json= new JsonFormatter();
 $data = $json->getData();
