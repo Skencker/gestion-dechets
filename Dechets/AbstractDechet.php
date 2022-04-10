@@ -5,10 +5,12 @@ namespace App\Dechets;
 abstract class AbstractDechet
 {
     public int $volume;
+    public int $rejetCo2;
 
-    public function __construct($volume)
+    public function __construct($volume, $rejetCo2)
     {
         $this->volume = $volume;
+        $this->rejetCo2 = $rejetCo2;
     }
 
     public function getType(): string

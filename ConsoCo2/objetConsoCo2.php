@@ -11,7 +11,7 @@ $json= new JsonFormatter();
 $consoCo2 = $json->getCo2();
 
 $recyclageVerre = $consoCo2["verre"]["incineration"];
-
+// var_dump($recyclageVerre);
 
        
 // $consoCo2Papier[] = new ConsoCo2Papier($conso->papier->incineration, $conso->papier->recyclage);
