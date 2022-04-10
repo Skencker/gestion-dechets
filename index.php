@@ -28,137 +28,129 @@ echo " tonnes </p>";
 echo "<p>Volume total des déchets de type organique : ";
 print_r($volumeTotalOrganique);
 echo " tonnes <p>";
-echo "<br>";
-echo "<br>";
 
+
+
+$volumeVerre = 0;
+$volumePapier = 0;
+$volumeMetaux = 0;
+$volumeOrganique = 0;
 
 foreach ($tabServices as $services)
 {
     foreach ($services as $service)
     {
-        print_r("<h2>########   SERVICES :  ".$service->getType(). "  ####### </h2>");
+        // print_r("<h2>########   SERVICES :  ".$service->getType(). "  ####### </h2>");
         foreach ($tabDechets as $dechets) 
         {
             foreach ($dechets as $dechet) 
             {
-                //si le dechet est un verre
-                if ($dechet instanceof VerreInterface)
+                //si le dechet est un verre et si le service accepte les verre et je verifie qu'il y a de la place dans le service
+                if ($dechet instanceof VerreInterface && $service instanceof VerreInterface && $service->capacity > 0 )
                 {
-                    // si le service accepte les verre
-                    if ($service instanceof VerreInterface)
-                    {
-                        //je verifie qu'il y a de la place dans le service
-                        if($service->capacity > 0)
-                        {
-                            $capacityRecyclageVerre = $service->capacity;
-                            $volumeVerre = $volumeTotalVerre;
-                            $result = $volumeVerre - $capacityRecyclageVerre;
-                            //je met la capacité de recyclage a jour avec une condition si capacité inf a volume dechet  capacite = 0 sinon :
-                            $capacityRecyclageVerre = $capacityRecyclageVerre - $volumeVerre;
-                            echo "<br>";
-                            echo "Consommation de co2 :  ";
-                            $co2Verre = $consoCo2["verre"]["recyclage"]*$volumeVerre;
-                            print_r($co2Verre);
-                            echo "  Volume de co2 rejeté    ";
-                            echo "<br>";
-                            echo "Volume restante de dechet :  ";
-                            print_r($result);
-                            echo " tonnes ";
-                            echo "<hr>  ";
-                            break;
-                        }
-                    }
+                    $volumeVerre += $dechet->volume;
+                    $capacityRecyclageVerre = $service->capacity;
+                    $resultVerre = $volumeVerre - $capacityRecyclageVerre;
+                    //je met la capacité de recyclage a jour avec une condition si capacité inf a volume dechet  capacite = 0 sinon :
+                    $capacityRecyclageVerre = $capacityRecyclageVerre - $volumeVerre;
                 }
-                //si le dechet est un papier
-                if ($dechet instanceof PapierInterface)
+               
+                //si le dechet est un papier...
+                if ($dechet instanceof PapierInterface && $service instanceof PapierInterface && $service->capacity > 0)
                 {
-                    // si le service accepte les verre
-                    if ($service instanceof PapierInterface)
-                    {
-                        //je verifie qu'il y a de la place dans le service
-                        if($service->capacity > 0)
-                        {
-                            $capacityRecyclagePapier = $service->capacity;
-                            $volumePapier = $volumeTotalPapier;
-                            $result = $volumePapier - $capacityRecyclagePapier;
-                            //je met la capacité de recyclage a jour
-
-                            $capacityRecyclagePapier = $capacityRecyclagePapier - $volumePapier;
-                            echo "<br>";
-                            echo "Consommation de co2 :  ";
-                            $co2Papier = $consoCo2["papier"]["recyclage"] * $volumePapier;
-                            print_r($co2Papier);
-                            echo "  Volume de co2 rejeté    ";
-                            echo "<br>";
-                            echo "Volume restante de dechet :  ";
-                            print_r($result);
-                            echo " tonnes ";
-                            echo "<hr>  ";
-                            break;
-                        }
-                    }
+                    $capacityRecyclagePapier = $service->capacity;
+                    $volumePapier += $dechet->volume;
+                    $resultPapier = $volumePapier - $capacityRecyclagePapier;
+                    //je met la capacité de recyclage a jour
+                    $capacityRecyclagePapier = $capacityRecyclagePapier - $volumePapier;
                 }
-                //si le dechet est un papier
-                if ($dechet instanceof MetauxInterface)
+                //si le dechet est un metaux....
+                if ($dechet instanceof MetauxInterface && $service instanceof MetauxInterface && $service->capacity > 0)
                 {
-                    // si le service accepte les verre
-                    if ($service instanceof MetauxInterface)
-                    {
-                        //je verifie qu'il y a de la place dans le service
-                        if($service->capacity > 0)
-                        {
                             $capacityRecyclageMetaux = $service->capacity;
-                            $volumeMetaux = $volumeTotalMetaux;
-                            $result = $volumeMetaux - $capacityRecyclageMetaux;
+                            $volumeMetaux += $dechet->volume;
+                            $resultMetaux = $volumeMetaux - $capacityRecyclageMetaux;
                             //je met la capacité de recyclage a jour
                             $capacityRecyclageMetaux = $capacityRecyclageMetaux - $volumeMetaux;
-                            echo "<br>";
-                            echo "Consommation de co2 :  ";
-                            $co2Metaux = $consoCo2["metaux"]["recyclage"]*$volumeMetaux;
-                            print_r($co2Metaux);
-                            echo "  Volume de co2 rejeté    ";
-                            echo "<br>";
-                            echo "Volume restante de dechet :  ";
-                            print_r($result);
-                            echo " tonnes ";
-                            echo "<hr>  ";
-                            break;
-                        }
-                    }
                 }
                 //si le dechet est un papier
-                if ($dechet instanceof OrganiqueInterface)
+                if ($dechet instanceof OrganiqueInterface && $service instanceof OrganiqueInterface && $service->capacity > 0)
                 {
-                    // si le service accepte les verre
-                    if ($service instanceof OrganiqueInterface)
-                    {
-                        //je verifie qu'il y a de la place dans le service
-                        if($service->capacity > 0)
-                        {
-                            $capacityRecyclageOrganique = $service->capacity;
-                            $volumeOrganique = $volumeTotalOrganique;
-                            $result = $volumeOrganique - $capacityRecyclageOrganique;
-                            //je met la capacité de recyclage a jour
-                            $capacityRecyclageOrganique = $capacityRecyclageOrganique - $volumeOrganique;
-                            echo "<br>";
-                            echo "Consommation de co2 :  ";
-                            $co2Organique = $consoCo2["organique"]["compostage"]*$volumeOrganique;
-                            print_r($co2Organique);
-                            echo "  Volume de co2 rejeté    ";
-                            echo "<br>";
-                            echo "Volume restante de dechet :  ";
-                            print_r($result);
-                            echo " tonnes ";
-                            echo "<hr>  ";
-                            break;
-                        }
-                    }
+                    $capacityRecyclageOrganique = $service->capacity;
+                    $volumeOrganique += $dechet->volume;
+                    $resultOrganique = $volumeOrganique - $capacityRecyclageOrganique;
+                    //je met la capacité de recyclage a jour
+                    $capacityRecyclageOrganique = $capacityRecyclageOrganique - $volumeOrganique;
                 }
             }
         }
-        echo "<br>";
-        echo "<br>";
     }
 }
+        echo "<br>";
+    
+        print_r("<h2>########   SERVICES :  Recyclage Verre  ####### </h2>");
+        echo "Total déchets verre :  ";
+        print_r($volumeVerre);
+        echo " tonnes ";
+        echo "<br>";
+        echo "Rejet co2 :  ";
+        $co2Verre = $consoCo2["verre"]["recyclage"] * $volumeVerre;
+        print_r($co2Verre);
+        echo "  Volume de co2 rejeté    ";
+        echo "<br>";
+        echo "Volume restante de dechet :  ";
+        print_r($resultVerre);
+        echo " tonnes ";
+        echo "<hr>  ";
+
+        echo "<br>";
+        print_r("<h2>########   SERVICES :  Recyclage papier  ####### </h2>");
+        echo "Total déchets papier :  ";
+        print_r($volumePapier);
+        echo " tonnes ";
+        echo "<br>";
+        echo "Rejet co2 :  ";
+        $co2Papier = $consoCo2["papier"]["recyclage"] * $volumePapier;
+        print_r($co2Papier);
+        echo "  Volume de co2 rejeté    ";
+        echo "<br>";
+        echo "Volume restante de dechet :  ";
+        print_r($resultPapier);
+        echo " tonnes ";
+        echo "<hr>  ";
+
+        echo "<br>";
+        print_r("<h2>########   SERVICES :  Recyclage Métaux ####### </h2>");
+        echo "Total déchets metaux :  ";
+        print_r($volumeMetaux);
+        echo " tonnes ";
+        echo "<br>";
+        echo "Rejet co2 :  ";
+        $co2Metaux = $consoCo2["metaux"]["recyclage"] * $volumeMetaux;
+        print_r($co2Metaux);
+        echo "  Volume de co2 rejeté    ";
+        echo "<br>";
+        echo "Volume restante de dechet :  ";
+        print_r($resultMetaux);
+        echo " tonnes ";
+        echo "<hr>  ";
+
+        echo "<br>";
+        print_r("<h2>########   SERVICES :  Composteur    ####### </h2>");
+        echo "Total déchets Organique :  ";
+        print_r($volumeOrganique);
+        echo " tonnes ";
+        echo "<br>";
+        echo "Rejet co2 :  ";
+        $co2Organique = $consoCo2["metaux"]["recyclage"] * $volumeOrganique;
+        print_r($co2Organique);
+        echo "  Volume de co2 rejeté    ";
+        echo "<br>";
+        echo "Volume restante de dechet :  ";
+        print_r($resultOrganique);
+        echo " tonnes ";
+        echo "<hr>  ";
+ 
+
 
 echo "<br>";
